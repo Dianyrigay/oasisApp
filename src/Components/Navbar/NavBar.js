@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import './Navbar.css';
-import {Button} from '../Button'
+import {Button} from '../Button';
+import CartWidget from '../CartWidget/CartWidget';
+// import {Link} from 'react-router-dom';
 
 class Navbar extends Component {
   state = { clicked: false }
@@ -38,24 +40,27 @@ class Navbar extends Component {
       }
     ]
     return (
-      <nav className="NavbarItems">
-        <h1 className="logo">Oasis Store<i className="fab fa-react"></i></h1>
-        <div className="menu-icon" onClick={this.handleClick}>
-          <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
-        </div>
-        <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-          {MenuItems.map((item, index) => {
-            return (
-              <li key={index}>
-                <a className={item.class} href={item.url}>
-                  {item.title}
-                </a>
-              </li>
-            )
-          })}
-        </ul>
-        <Button>Login</Button>
-      </nav>
+      <div className="app">
+        <nav className="NavbarItems">
+          <h1 className="logo"><i className="fa-regular fa-sun"></i> Oasis Store</h1>
+          <div className="menu-icon" onClick={this.handleClick}>
+            <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+          </div>
+          <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
+            {MenuItems.map((item, index) => {
+              return (
+                <li key={index}>
+                  <a className={item.class} href={item.url}>
+                    {item.title}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+          <Button>Login</Button>
+          <CartWidget></CartWidget>
+        </nav>
+      </div>
     )
 
   }
